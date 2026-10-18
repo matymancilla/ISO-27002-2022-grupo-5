@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block titulo %}Administración | Portal académico{% endblock %}
+
+{% block contenido %}
+<main class="consulta-contenedor">
+    <header class="portal-cabecera">
+        <a href="{{ url_for('inicio') }}">Volver al inicio</a>
+        <span class="insignia">Administración</span>
+    </header>
+
+    <section class="bienvenida">
+        <span class="etiqueta">CONTROL DE ACCESO</span>
+
+        {% if permitido %}
+            <h1>Acceso autorizado</h1>
+            <p class="texto-secundario">
+                La cuenta tiene permisos de administrador.
+            </p>
+        {% else %}
+            <h1>Acceso denegado</h1>
+            <div class="alerta" role="alert">
+                Esta sección requiere permisos de administrador.
+            </div>
+        {% endif %}
+    </section>
+</main>
+{% endblock %}

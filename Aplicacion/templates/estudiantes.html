@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block titulo %}Estudiantes | Portal académico{% endblock %}
+
+{% block contenido %}
+<main class="consulta-contenedor">
+    <header class="portal-cabecera">
+        <a href="{{ url_for('inicio') }}">← Volver al inicio</a>
+        <span class="insignia">Consulta académica</span>
+    </header>
+
+    <section class="bienvenida">
+        <span class="etiqueta">ESTUDIANTES</span>
+        <h1>Consulta de estudiantes</h1>
+        <p class="texto-secundario">
+            Busca un estudiante por su identificador.
+        </p>
+    </section>
+
+    <section class="tarjeta">
+        <form method="get" class="busqueda-estudiante">
+            <div class="campo">
+                <label for="estudiante-id">Identificador del estudiante</label>
+                <input
+                    id="estudiante-id"
+                    name="id"
+                    type="text"
+                    inputmode="numeric"
+                    maxlength="50"
+                    value="{{ identificador }}"
+                    placeholder="Ejemplo: 1"
+                    required>
+            </div>
+
+            <button type="submit" class="boton-principal">
+                Consultar
+            </button>
+        </form>
+
+        {% if error %}
+            <div class="alerta" role="alert">{{ error }}</div>
+        {% elif resultados %}
+            <div class="tabla-contenedor">
+                <table class="tabla">
+                    <caption>Resultado de la consulta</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">Identificador</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Carrera</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for estudiante in resultados %}
+                        <tr>
+                            <td>{{ estudiante.EstudianteId }}</td>
+                            <td>{{ estudiante.Nombre }}</td>
+                            <td>{{ estudiante.Carrera }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% elif busqueda %}
+            <p class="texto-secundario" role="status">
+                No se encontró un estudiante con ese identificador.
+            </p>
+        {% endif %}
+    </section>
+</main>
+{% endblock %}

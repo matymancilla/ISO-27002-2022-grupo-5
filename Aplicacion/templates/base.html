@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light">
+    <title>{% block titulo %}Portal académico{% endblock %}</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/estilos.css') }}">
+
+    <script defer
+            src="{{ url_for('static', filename='js/aplicacion.js') }}">
+    </script>
+</head>
+<body>
+    {% block contenido %}{% endblock %}
+</body>
+</html>

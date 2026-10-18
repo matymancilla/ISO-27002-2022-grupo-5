@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block titulo %}Inicio | Portal académico{% endblock %}
+
+{% block contenido %}
+<div class="portal">
+    <aside class="barra-lateral">
+        <a class="marca" href="{{ url_for('inicio') }}">
+            <span class="marca-simbolo" aria-hidden="true">NU</span>
+            <span>Nube Universitaria</span>
+        </a>
+
+        <div class="navegacion">
+            <span class="etiqueta">ESPACIO DE TRABAJO</span>
+            <a class="enlace-activo"
+               href="{{ url_for('inicio') }}"
+               aria-current="page">
+                Inicio
+            </a>
+        </div>
+
+        <div class="perfil">
+            <span class="perfil-avatar" aria-hidden="true">
+                {{ usuario[:1] | upper }}
+            </span>
+            <div>
+                <strong>{{ usuario }}</strong>
+                <span>{{ rol | capitalize }}</span>
+            </div>
+        </div>
+    </aside>
+
+    <main class="portal-principal">
+        <header class="portal-cabecera">
+            <span>Portal académico / Inicio</span>
+            <span class="insignia">Sesión iniciada</span>
+        </header>
+
+        <section class="bienvenida">
+            <span class="etiqueta">INICIO</span>
+            <h1>Bienvenido, {{ usuario }}</h1>
+            <p class="texto-secundario">
+                La sesión se inició correctamente.
+            </p>
+        </section>
+
+        <section class="tarjetas" aria-label="Información de la cuenta">
+            <article class="tarjeta">
+                <span class="tarjeta-numero">01</span>
+                <h2>Cuenta</h2>
+                <p class="tarjeta-valor">{{ usuario }}</p>
+                <p>Usuario conectado al portal.</p>
+            </article>
+
+            <article class="tarjeta">
+                <span class="tarjeta-numero">02</span>
+                <h2>Perfil de acceso</h2>
+                <p class="tarjeta-valor">{{ rol | capitalize }}</p>
+                <p>Rol asignado a esta cuenta.</p>
+            </article>
+        </section>
+
+        <section class="panel-informacion">
+            <div>
+                <span class="etiqueta">INFORMACIÓN ACADÉMICA</span>
+                <h2>Consulta de estudiantes</h2>
+                <p class="texto-secundario">
+                    Consulta la información mediante el identificador del estudiante.
+                </p>
+            </div>
+
+            <a class="insignia" href="{{ url_for('estudiantes') }}">
+                Abrir consulta →
+            </a>
+        </section>
+    </main>
+</div>
+{% endblock %}
